@@ -1,0 +1,7 @@
+# https://help.github.com/articles/ignoring-files
+#
+# Use a global ignore for editor/OS files: git config --global core.excludesfile '~/.gitignore_global'
+
+/dist/
+node_modules/
+junit.xml

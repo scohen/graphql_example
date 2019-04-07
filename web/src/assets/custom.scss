@@ -1,0 +1,9 @@
+@import "~bulmaswatch/cerulean/variables";
+
+$title-color: #4e4e4e;
+$title-weight: bold;
+$subtitle-color: $turquoise;
+$subtitle-weight: 900;
+
+@import "~bulma";
+@import "~bulmaswatch/cerulean/overrides";

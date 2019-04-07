@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+
+CONF_DIRECTORY="${PWD}/runners.d"
+PROJECT_HOME=`pwd`
+start() {
+
+    tmux start-server
+    tmux kill-session -t graphql_example
+
+    tmux new-session -d -s graphql_example -n shell
+
+    tmux send-keys -t graphql_example:shell "cd ${PROJECT_HOME}" C-m
+    tmux set-option -t graphql_example status-bg colour024
+    tmux set-option -t graphql_example status-fg colour250
+    tmux set-option -t graphql_example status-left-length 0
+    tmux set-option -t graphql_example status-right-length 0
+
+    for f in $CONF_DIRECTORY/*.sh;
+    do
+        conf_file=`cat $f`
+        conf_filename=$(basename $f)
+        service_name=${conf_filename%.*}
+        tmux new-window -t graphql_example -n $service_name
+        tmux send-keys -t graphql_example:$service_name "cd ${PROJECT_HOME}/graphql_example_${service_name}" C-m
+        tmux send-keys -t graphql_example:$service_name "$conf_file" C-m
+    done
+
+    tmux select-window -t graphql_example:shell
+    tmux attach-session -t graphql_example
+}
+
+stop()
+{
+    pkill -f "sname discord_"
+    tmux kill-session -t graphql_example
+}
+
+usage()
+{
+  echo "$0 start | stop"
+}
+
+case $1 in
+    start )
+        start
+        ;;
+    stop )
+        stop
+        ;;
+    * )
+        usage
+        ;;
+esac

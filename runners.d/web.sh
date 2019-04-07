@@ -1,0 +1,2 @@
+cd web
+yarn serve

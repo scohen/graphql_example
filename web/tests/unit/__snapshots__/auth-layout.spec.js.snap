@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`auth-layout.vue renders correctly 1`] = `
+<section class="hero is-light is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-6-tablet is-5-desktop is-4-widescreen">
+          <h1 class="title has-text-centered"><span>Hello There</span></h1>
+          <div class="box">
+            <div>Content Goes Here</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+`;
